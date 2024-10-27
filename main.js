@@ -1,6 +1,7 @@
 const gridSide = 700;
 let rows = 16;
 let columns = 16;
+let isMouseDown = false;
 
 const sketcharea = document.querySelector("#sketch-area");
 const sliderContainer = document.querySelector("#slider-container");
@@ -12,7 +13,9 @@ sketcharea.style.width = `${gridSide}px`;
 sketcharea.style.height = `${gridSide}px`;
 
 function setBackgroundColor() {
-    this.style.backgroundColor = "black";
+    if (isMousedown) {
+        this.style.backgroundColor = "black";
+    }
 }
 
 function createGridCells(gridSize) {
@@ -24,14 +27,14 @@ function createGridCells(gridSize) {
     for (let i = 0; i < numOfSquares; i++) {
         const gridCell = document.createElement("div");
 
-        // Adjust for exact pixel calculation and any borders
         gridCell.style.width = `${gridSide / columns - 2}px`;
         gridCell.style.height = `${gridSide / rows - 2}px`;
         gridCell.classList.add("cell");
 
         sketcharea.appendChild(gridCell);
 
-        gridCell.addEventListener("mouseover", setBackgroundColor);
+        gridCell.addEventListener("mousedown", setBackgroundColor);
+        gridCell.addEventListener("mousemove", setBackgroundColor);
     }
 }
 
@@ -48,3 +51,15 @@ slider.oninput = function () {
     sliderValue.textContent = `${gridSize} x ${gridSize} (Resolution)`;
     createGridCells(gridSize);
 };
+
+document.body.addEventListener("mousedown", function () {
+    isMouseDown = true;
+});
+
+document.body.addEventListener("mouseup", function () {
+    isMouseDown = false;
+});
+
+document.body.addEventListener("mouseleave", function () {
+    isMouseDown = false;
+});
