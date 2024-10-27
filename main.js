@@ -7,14 +7,15 @@ const sketcharea = document.querySelector("#sketch-area");
 const sliderContainer = document.querySelector("#slider-container");
 const slider = document.querySelector("#slider");
 const sliderValue = document.querySelector("#slider-value");
+const color = document.querySelector("#pen-color");
 
 sliderValue.textContent = `${slider.value} x ${slider.value} (Resolution)`;
 sketcharea.style.width = `${gridSide}px`;
 sketcharea.style.height = `${gridSide}px`;
 
 function setBackgroundColor() {
-    if (isMousedown) {
-        this.style.backgroundColor = "black";
+    if (isMouseDown) {
+        this.style.backgroundColor = color.value;
     }
 }
 
