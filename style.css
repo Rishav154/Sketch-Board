@@ -17,6 +17,14 @@ body {
     margin: auto;
 }
 
+/*Tools*/
+
+.tools {
+    width: 700px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #sketch-area {
     display: flex;
     flex-wrap: wrap;
@@ -24,7 +32,7 @@ body {
 }
 
 .cell {
-    border: 1px solid whitesmoke;
+    border: 1px solid rgba(204, 204, 204, 0.4);
 }
 
 #slider-container {
