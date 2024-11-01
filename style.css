@@ -5,7 +5,6 @@
 
 body {
     background-color: aliceblue;
-    touch-action: none;
     overflow: hidden;
 }
 
@@ -31,6 +30,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     background-color: white;
+    touch-action: none;
 }
 
 .cell {

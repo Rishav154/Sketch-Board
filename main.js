@@ -34,8 +34,8 @@ function setBackgroundColor(event) {
         } else {
             event.target.style.backgroundColor = color.value; // Use the selected color
         }
+        event.preventDefaults();
     }
-    event.preventDefaults();
 }
 
 //Create cells according to the slider value
