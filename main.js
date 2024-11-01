@@ -23,14 +23,19 @@ createGridCells(slider.value);
 sketcharea.style.cursor = "crosshair";
 
 //Sets color for the cell
-function setBackgroundColor() {
-    if (isMouseDown) {
+function setBackgroundColor(event) {
+    if (
+        isMouseDown ||
+        event.type === "touchmove" ||
+        event.type === "touchstart"
+    ) {
         if (eraseMode) {
-            this.style.backgroundColor = "white"; // Erase by setting color to white
+            event.target.style.backgroundColor = "white"; // Erase by setting color to white
         } else {
-            this.style.backgroundColor = color.value; // Use the selected color
+            event.target.style.backgroundColor = color.value; // Use the selected color
         }
     }
+    event.preventDefaults();
 }
 
 //Create cells according to the slider value
@@ -51,6 +56,8 @@ function createGridCells(gridSize) {
 
         gridCell.addEventListener("mousedown", setBackgroundColor);
         gridCell.addEventListener("mousemove", setBackgroundColor);
+        gridCell.addEventListener("touchstart", setBackgroundColor);
+        gridCell.addEventListener("touchmove", setBackgroundColor);
     }
 }
 
@@ -76,6 +83,12 @@ document.body.addEventListener("mouseup", function () {
     isMouseDown = false;
 });
 document.body.addEventListener("mouseleave", function () {
+    isMouseDown = false;
+});
+document.body.addEventListener("touchstart", function () {
+    isMouseDown = true;
+});
+document.body.addEventListener("touchend", function () {
     isMouseDown = false;
 });
 

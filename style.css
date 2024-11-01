@@ -5,6 +5,8 @@
 
 body {
     background-color: aliceblue;
+    touch-action: none;
+    overflow: hidden;
 }
 
 .main-section {
